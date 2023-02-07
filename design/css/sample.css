@@ -1,0 +1,19 @@
+h1 {
+  color: green;
+}
+
+h2 {
+  color: red;
+}
+
+div {
+  background-color: whitesmoke;
+}
+
+.container {
+  background-color: beige;
+}
+
+#content-area-p {
+  color: blue;
+}
