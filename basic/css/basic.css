@@ -1,0 +1,12 @@
+p {
+  color: red;
+}
+
+a {
+  color: green
+}
+
+.some-link {
+  color:chartreuse;
+  font-weight: bold;
+}
