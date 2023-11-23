@@ -60,8 +60,12 @@ class Rabbit extends Animal {
   }
 }
 
-let rabbit = new Rabbit("흑토끼");
-rabbit.run(5);
-rabbit.hide();
-rabbit.stop();
-console.log(rabbit instanceof Rabbit);
+start();
+
+function start() {
+  let blackRabbit = new Rabbit("흑토끼");
+  blackRabbit.run(5);
+  blackRabbit.hide();
+  blackRabbit.stop();
+  console.log(blackRabbit instanceof Rabbit);
+}
