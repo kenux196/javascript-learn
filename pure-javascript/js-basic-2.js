@@ -1,10 +1,10 @@
 let user = {
-  name: 'John',
-  surname: 'Smith',
+  name: "John",
+  surname: "Smith",
 };
 console.log(user);
 
-user.name = 'Pete';
+user.name = "Pete";
 console.log(user);
 delete user.name;
 console.log(user);
@@ -12,7 +12,7 @@ console.log(user);
 let schedule = {};
 console.log(isEmpty(schedule));
 
-schedule['8:30'] = 'get up';
+schedule["8:30"] = "get up";
 console.log(isEmpty(schedule));
 
 function isEmpty(obj) {
