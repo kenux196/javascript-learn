@@ -45,3 +45,16 @@ console.log(someArr);
 
 someArr.splice(3, 2);
 console.log(someArr);
+
+let someArr2 = new Array(3);
+console.log(someArr2);
+console.log(someArr2.length);
+
+let someArr3 = new Array(1, 2, 3);
+console.log(someArr3);
+console.log(someArr3.length);
+
+// 기본 타입과 표준 메서드
+let num = 0.3;
+console.log(num.toExponential(1));
+console.log("test".charAt(3));
