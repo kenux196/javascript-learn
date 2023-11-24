@@ -65,3 +65,49 @@ for (const prop in human2) {
 // 객체 프로퍼티 삭제
 delete human2.class;
 console.log(human2);
+
+let objA = {
+  val: 40,
+};
+
+let objB = objA;
+
+console.log(objA.val);
+console.log(objB.val);
+
+objB.val = 50;
+console.log(objA.val);
+console.log(objB.val);
+
+// 객체 비교 : 동등 비교(==)
+// 기본타입은 == 사용하면 값을 비교한다.
+let someA = 100;
+let someB = 100;
+console.log(someA == someB);
+
+let nullA = null;
+let nullB = null;
+console.log(nullA == nullB);
+
+let objAA = { value: 100 };
+let objBB = { value: 100 };
+let objCC = objBB;
+console.log(objAA == objBB);
+console.log(objBB == objCC);
+
+let start = 100;
+let objStart = { value: 100 };
+
+function changeArg(num, obj) {
+  num = 200;
+  obj.value = 200;
+
+  console.log(num);
+  console.log(obj);
+}
+
+changeArg(start, objStart);
+console.log(start);
+console.log(objStart);
+
+
