@@ -69,3 +69,14 @@ function start() {
   blackRabbit.stop();
   console.log(blackRabbit instanceof Rabbit);
 }
+
+class Rabbit2 extends Animal {
+  constructor(name, earLength) {
+    super(name);
+    this.earLength = earLength;
+  }
+}
+
+let rabbit2 = new Rabbit2("Blue Rabbit", 10);
+console.log(rabbit2.name);
+console.log(rabbit2.earLength);
