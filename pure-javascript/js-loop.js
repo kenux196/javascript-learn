@@ -22,3 +22,14 @@ function getAge() {
 start();
 // console.log(arrayTest);
 console.log(arrayTest[1121]);
+
+const yuJin = {
+  name: "안유진",
+  year: 2003,
+  group: "아이브",
+};
+
+for (let key in yuJin) {
+  console.log(key);
+  console.log(yuJin[key]);
+}
