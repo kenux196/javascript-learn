@@ -16,14 +16,14 @@ class IdolModel {
   }
 }
 
-const yuJin = new IdolModel("안유진", 2003);
+const yuJin = new IdolModel('안유진', 2003);
 console.log(yuJin);
 console.log(yuJin.nameAndYear);
 
-yuJin.name = "kenux";
+yuJin.name = 'kenux';
 console.log(yuJin);
 
-console.log("========================");
+console.log('========================');
 class IdolModel2 {
   #name;
   year;
@@ -42,8 +42,8 @@ class IdolModel2 {
   }
 }
 
-const yuJin2 = new IdolModel2("안유진", 2003);
+const yuJin2 = new IdolModel2('안유진', 2003);
 console.log(yuJin2);
 console.log(yuJin2.name);
-yuJin2.name = "장원영";
+yuJin2.name = '장원영';
 console.log(yuJin2.name);
