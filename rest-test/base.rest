@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:3000
+
+###
+GET {{baseUrl}} HTTP/1.1
+
+###
+GET {{baseUrl}}/images/web-app-architecture.PNG
+
+###
+GET {{baseUrl}}/index.html
+
+###
+GET {{baseUrl}}/birds HTTP/1.1
+
+###
+GET {{baseUrl}}/birds/detail HTTP/1.1

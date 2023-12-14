@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000
+
+###
+GET {{baseUrl}}/posts HTTP/1.1
+
+###
+POST {{baseUrl}}/posts HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "부의 추월차선",
+  "name": "엠제이 드마코",
+  "text": "부자가 되기 위한 추월차선에 올라타라."
+}
+
+###
+POST {{baseUrl}}/posts HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+title=월가의 영웅&name=피터 린치&text=위대한 투자자
+
+###
+DELETE {{baseUrl}}/posts/1 HTTP/1.1

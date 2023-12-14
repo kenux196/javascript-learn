@@ -1,0 +1,13 @@
+@baseUrl = http://localhost:3000
+
+###
+POST {{baseUrl}}/members HTTP/1.1
+
+###
+PUT {{baseUrl}}/members HTTP/1.1
+
+###
+DELETE {{baseUrl}}/members HTTP/1.1
+
+###
+GET {{baseUrl}}/members HTTP/1.1

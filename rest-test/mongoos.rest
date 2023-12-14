@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:3000
+
+###
+GET {{baseUrl}}/person HTTP/1.1
+
+###
+GET {{baseUrl}}/person/user1@test.com HTTP/1.1
+
+###
+POST {{baseUrl}}/person HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "user2",
+  "age": 31,
+  "email": "user2@test.com"
+}
+
+###
+PUT {{baseUrl}}/person/user3@test.com HTTP/1.1
+Content-Type: application/json
+
+{
+  "age": 34
+}
+
+###
+DELETE {{baseUrl}}/person/user1@test.com HTTP/1.1
