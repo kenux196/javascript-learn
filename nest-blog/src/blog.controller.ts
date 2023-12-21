@@ -26,9 +26,7 @@ export class BlogController {
   @Post()
   createPost(@Body() postDto) {
     console.log('게시글 작성');
-    console.log(postDto);
-    this.blogService.createPost(postDto);
-    return 'success';
+    return this.blogService.createPost(postDto);
   }
 
   @Get('/:id')
@@ -46,7 +44,6 @@ export class BlogController {
   @Put('/:id')
   updatePost(@Param('id') id: string, @Body() postDto) {
     console.log(`[id: ${id}] 게시글 업데이트`);
-    console.log(postDto);
     return this.blogService.updatePost(id, postDto);
   }
 }

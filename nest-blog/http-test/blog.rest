@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### Get post
-GET {{BaseUrl}}/blog/3 HTTP/1.1
+GET {{BaseUrl}}/blog/1 HTTP/1.1
 
 ### Delete post
 DELETE {{BaseUrl}}/blog/1 HTTP/1.1
