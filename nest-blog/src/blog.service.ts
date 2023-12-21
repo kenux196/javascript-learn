@@ -1,4 +1,4 @@
-import { MemoryRepository } from './blog.memory-repository';
+import { MemoryRepository } from './blog.repository';
 import { PostDto } from './blog.model';
 
 export class BlogService {
@@ -12,7 +12,7 @@ export class BlogService {
     return this.memoryRepository.findAll();
   }
 
-  getPost(id) {
+  async getPost(id) {
     return this.memoryRepository.findById(id);
   }
 
@@ -21,24 +21,26 @@ export class BlogService {
     return `Created Post: ${id}`;
   }
 
-  deletePost(id) {
-    if (this.existPost(id) === false) {
+  async deletePost(id) {
+    const exist = await this.existPost(id);
+    if (exist === false) {
       return `Delete Failed: post(${id}) is not existed.`;
     }
     this.memoryRepository.deleteById(id);
     return `Deleted post: ${id}`;
   }
 
-  updatePost(id, postDto: PostDto) {
-    if (this.existPost(id) === false) {
+  async updatePost(id, postDto: PostDto) {
+    const exist = await this.existPost(id);
+    if (exist === false) {
       return `Update Failed: post(${id}) is not existed.`;
     }
     this.memoryRepository.update(id, postDto);
     return `Updated post: ${id}`;
   }
 
-  existPost(id) {
-    const post = this.getPost(id);
+  async existPost(id) {
+    const post = await this.getPost(id);
     if (post === undefined) {
       return false;
     }
