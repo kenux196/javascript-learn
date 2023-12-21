@@ -1,0 +1,32 @@
+# nest-blog test
+@BaseUrl=http://localhost:3000
+
+### GET All posts
+GET {{BaseUrl}}/blog HTTP/1.1
+
+
+### Create post
+POST {{BaseUrl}}/blog HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "테스트 글2",
+  "name": "user1",
+  "content": "첫 번째 글입니다."
+}
+
+### Get post
+GET {{BaseUrl}}/blog/3 HTTP/1.1
+
+### Delete post
+DELETE {{BaseUrl}}/blog/1 HTTP/1.1
+
+### Update post
+PUT {{BaseUrl}}/blog/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "테스트 글",
+  "name": "user1",
+  "content": "수정된 글입니다."
+}
