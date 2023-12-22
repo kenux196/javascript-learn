@@ -16,13 +16,13 @@ Content-Type: application/json
 }
 
 ### Get post
-GET {{BaseUrl}}/blog/2 HTTP/1.1
+GET {{BaseUrl}}/blog/658520a151e92caa197eb4ca HTTP/1.1
 
 ### Delete post
-DELETE {{BaseUrl}}/blog/1 HTTP/1.1
+DELETE {{BaseUrl}}/blog/658520a151e92caa197eb4ca HTTP/1.1
 
 ### Update post
-PUT {{BaseUrl}}/blog/2 HTTP/1.1
+PUT {{BaseUrl}}/blog/658520a151e92caa197eb4ca HTTP/1.1
 Content-Type: application/json
 
 {

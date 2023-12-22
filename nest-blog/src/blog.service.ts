@@ -2,6 +2,7 @@ import {
   BlogMemoryRepository,
   BlogFileRepository,
   BlogRepository,
+  BlogMongoRepository,
 } from './blog.repository';
 import { PostDto } from './blog.model';
 import { Injectable } from '@nestjs/common';
@@ -10,9 +11,9 @@ import { Injectable } from '@nestjs/common';
 export class BlogService {
   // blogRepository: BlogMemoryRepository;
   // blogRepository: BlogRepository;
-  private blogRepository: BlogFileRepository;
+  private blogRepository: BlogMongoRepository;
 
-  constructor(blogRepository: BlogFileRepository) {
+  constructor(blogRepository: BlogMongoRepository) {
     // this.blogRepository = new BlogMemoryRepository();
     // this.blogRepository = new BlogFileRepository();
     this.blogRepository = blogRepository;
