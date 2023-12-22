@@ -12,7 +12,7 @@ Content-Type: application/json
 {
   "title": "테스트 글2",
   "name": "user1",
-  "content": "첫 번째 글입니다."
+  "content": "첫 번째 글입니다. 우와~~~~"
 }
 
 ### Get post

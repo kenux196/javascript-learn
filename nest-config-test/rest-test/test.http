@@ -1,0 +1,16 @@
+@host=http://localhost:3000
+
+### hello
+GET {{host}} HTTP/1.1
+
+### weather
+GET {{host}}/weather HTTP/1.1
+
+### service url
+GET {{host}}/service-url HTTP/1.1   
+
+### db info
+GET {{host}}/db-info HTTP/1.1
+
+### redist info
+GET {{host}}/redis-info HTTP/1.1
