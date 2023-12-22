@@ -1,23 +1,29 @@
-import { MemoryRepository } from './blog.repository';
+import {
+  BlogMemoryRepository,
+  BlogFileRepository,
+  BlogRepository,
+} from './blog.repository';
 import { PostDto } from './blog.model';
 
 export class BlogService {
-  memoryRepository: MemoryRepository;
+  // blogRepository: BlogMemoryRepository;
+  blogRepository: BlogRepository;
 
   constructor() {
-    this.memoryRepository = new MemoryRepository();
+    // this.blogRepository = new BlogMemoryRepository();
+    this.blogRepository = new BlogFileRepository();
   }
 
-  getAllPosts() {
-    return this.memoryRepository.findAll();
+  async getAllPosts() {
+    return await this.blogRepository.findAll();
   }
 
   async getPost(id) {
-    return this.memoryRepository.findById(id);
+    return await this.blogRepository.findById(id);
   }
 
-  createPost(postDto: PostDto) {
-    const id = this.memoryRepository.save(postDto);
+  async createPost(postDto: PostDto) {
+    const id = await this.blogRepository.save(postDto);
     return `Created Post: ${id}`;
   }
 
@@ -26,7 +32,7 @@ export class BlogService {
     if (exist === false) {
       return `Delete Failed: post(${id}) is not existed.`;
     }
-    this.memoryRepository.deleteById(id);
+    this.blogRepository.deleteById(id);
     return `Deleted post: ${id}`;
   }
 
@@ -35,7 +41,7 @@ export class BlogService {
     if (exist === false) {
       return `Update Failed: post(${id}) is not existed.`;
     }
-    this.memoryRepository.update(id, postDto);
+    this.blogRepository.update(id, postDto);
     return `Updated post: ${id}`;
   }
 

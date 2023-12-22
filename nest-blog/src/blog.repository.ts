@@ -1,15 +1,16 @@
+import { readFile, writeFile } from 'fs/promises';
 import { PostDto } from './blog.model';
 
 export interface BlogRepository {
   findAll(): Promise<PostDto[]>;
   findById(id: string): Promise<PostDto>;
-  save(postDto: PostDto): number;
+  save(postDto: PostDto): Promise<string>;
   deleteById(id: string);
   deleteAll();
   update(id: string, postDto: PostDto);
 }
 
-export class MemoryRepository implements BlogRepository {
+export class BlogMemoryRepository implements BlogRepository {
   posts = [];
   id = 0;
 
@@ -21,15 +22,16 @@ export class MemoryRepository implements BlogRepository {
     return this.posts.find((post) => post.id === id);
   }
 
-  save(postDto: PostDto): number {
+  async save(postDto: PostDto): Promise<string> {
     const id = ++this.id;
-    this.posts.push({
+    const newPost = {
       id: id.toString(),
       ...postDto,
       createdDt: new Date(),
       updatedDt: new Date(),
-    });
-    return id;
+    };
+    this.posts.push(newPost);
+    return newPost.id;
   }
 
   deleteById(id) {
@@ -58,5 +60,61 @@ export class MemoryRepository implements BlogRepository {
 
   getPostIndex(id) {
     return this.posts.findIndex((post) => post.id === id);
+  }
+}
+
+export class BlogFileRepository implements BlogRepository {
+  FILE_NAME = './src/blog.data.json';
+  id = 0;
+
+  getId() {
+    return ++this.id;
+  }
+
+  async findAll(): Promise<PostDto[]> {
+    const datas = await readFile(this.FILE_NAME, 'utf8');
+    const posts = JSON.parse(datas);
+    return posts;
+  }
+
+  async findById(id: string): Promise<PostDto> {
+    const posts = await this.findAll();
+    const result = posts.find((post) => post.id === id);
+    return result;
+  }
+
+  async save(postDto: PostDto): Promise<string> {
+    const posts = await this.findAll();
+    const newPost = {
+      id: this.getId().toString(),
+      ...postDto,
+      createdDt: new Date(),
+    };
+    posts.push(newPost);
+    await writeFile(this.FILE_NAME, JSON.stringify(posts));
+    return newPost.id;
+  }
+
+  async deleteById(id: string) {
+    const posts = await this.findAll();
+    const filteredPosts = posts.filter((post) => post.id !== id);
+    await writeFile(this.FILE_NAME, JSON.stringify(filteredPosts));
+  }
+
+  async deleteAll() {
+    const posts = [];
+    await writeFile(this.FILE_NAME, JSON.stringify(posts));
+  }
+
+  async update(id: string, postDto: PostDto) {
+    const posts = await this.findAll();
+    const index = posts.findIndex((post) => post.id === id);
+    const updatePost = {
+      id,
+      ...postDto,
+      updateDt: new Date(),
+    };
+    posts[index] = updatePost;
+    await writeFile(this.FILE_NAME, JSON.stringify(posts));
   }
 }
