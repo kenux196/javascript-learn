@@ -11,39 +11,40 @@ import { BlogService } from './blog.service';
 
 @Controller('/blog')
 export class BlogController {
-  blogService: BlogService;
+  private blogService: BlogService;
 
-  constructor() {
-    this.blogService = new BlogService();
+  constructor(blogService: BlogService) {
+    //  this.blogService = new BlogService();
+    this.blogService = blogService;
   }
 
   @Get()
-  getAllPosts() {
+  async getAllPosts() {
     console.log(`모든 게시글 가져오기`);
-    return this.blogService.getAllPosts();
+    return await this.blogService.getAllPosts();
   }
 
   @Post()
-  createPost(@Body() postDto) {
+  async createPost(@Body() postDto) {
     console.log('게시글 작성');
-    return this.blogService.createPost(postDto);
+    return await this.blogService.createPost(postDto);
   }
 
   @Get('/:id')
-  getPost(@Param('id') id: string) {
+  async getPost(@Param('id') id: string) {
     console.log(`[id: ${id}] 게시글 하나 가져오기`);
-    return this.blogService.getPost(id);
+    return await this.blogService.getPost(id);
   }
 
   @Delete('/:id')
-  deletePost(@Param('id') id: string) {
+  async deletePost(@Param('id') id: string) {
     console.log(`[id: ${id}] 게시글 삭제`);
-    return this.blogService.deletePost(id);
+    return await this.blogService.deletePost(id);
   }
 
   @Put('/:id')
-  updatePost(@Param('id') id: string, @Body() postDto) {
+  async updatePost(@Param('id') id: string, @Body() postDto) {
     console.log(`[id: ${id}] 게시글 업데이트`);
-    return this.blogService.updatePost(id, postDto);
+    return await this.blogService.updatePost(id, postDto);
   }
 }

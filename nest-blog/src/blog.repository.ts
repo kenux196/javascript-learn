@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import { PostDto } from './blog.model';
+import { Injectable } from '@nestjs/common';
 
 export interface BlogRepository {
   findAll(): Promise<PostDto[]>;
@@ -10,6 +11,7 @@ export interface BlogRepository {
   update(id: string, postDto: PostDto);
 }
 
+@Injectable()
 export class BlogMemoryRepository implements BlogRepository {
   posts = [];
   id = 0;
@@ -63,6 +65,7 @@ export class BlogMemoryRepository implements BlogRepository {
   }
 }
 
+@Injectable()
 export class BlogFileRepository implements BlogRepository {
   FILE_NAME = './src/blog.data.json';
   id = 0;
@@ -85,8 +88,9 @@ export class BlogFileRepository implements BlogRepository {
 
   async save(postDto: PostDto): Promise<string> {
     const posts = await this.findAll();
+    const id = posts.length + 1;
     const newPost = {
-      id: this.getId().toString(),
+      id: id.toString(),
       ...postDto,
       createdDt: new Date(),
     };

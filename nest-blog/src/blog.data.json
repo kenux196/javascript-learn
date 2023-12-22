@@ -1,16 +1,1 @@
-[
-  {
-    "id": "2",
-    "title": "테스트 글",
-    "name": "user1",
-    "content": "수정된 글입니다.",
-    "updateDt": "2023-12-22T03:58:04.070Z"
-  },
-  {
-    "id": "1",
-    "title": "테스트 글2",
-    "name": "user1",
-    "content": "첫 번째 글입니다.",
-    "createdDt": "2023-12-22T03:59:52.739Z"
-  }
-]
+[{"id":"2","title":"테스트 글","name":"user1","content":"수정된 글입니다.","updateDt":"2023-12-22T03:58:04.070Z"},{"id":"1","title":"테스트 글2","name":"user1","content":"첫 번째 글입니다.","createdDt":"2023-12-22T03:59:52.739Z"},{"id":"1","title":"테스트 글2","name":"user1","content":"첫 번째 글입니다.","createdDt":"2023-12-22T04:21:55.574Z"}]
