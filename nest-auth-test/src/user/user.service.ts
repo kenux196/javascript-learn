@@ -13,6 +13,11 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
+  async getAllUser() {
+    const result = await this.userRepository.find();
+    return result;
+  }
+
   async getUser(email: string) {
     console.log(`getUser(${email})`);
     const result = await this.userRepository.findOne({
