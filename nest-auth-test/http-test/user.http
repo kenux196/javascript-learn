@@ -29,3 +29,13 @@ Content-Type: application/json
 
 ### delete user
 DELETE {{host}}/user/delete/kenux@test.com HTTP/1.1
+
+### auth - register
+POST {{host}}/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "kenux11@test.com",
+  "username": "kenux11",
+  "password": "1212"
+}
