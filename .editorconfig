@@ -11,5 +11,5 @@ charset = utf-8
 trim_trailing_whitespace = false
 insert_final_newline = true
 
-[*.{js,html,vue,json,md,css,ts,yml,yaml}]
+[*.{js,html,vue,json,md,css,ts,yml,yaml,rest,http}]
 indent_size = 2
