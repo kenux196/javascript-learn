@@ -8,10 +8,10 @@ export class LoginGuard implements CanActivate {
   async canActivate(context: any): Promise<boolean> {
     // context에서 rquest 정보를 가져옴
     const request = context.switchToHttp().getRequest();
-    console.log('canActivate: ' + request);
+    console.log('canActivate: ' + request.body.email);
 
     // login 쿠키가 존재하면 인증된 것
-    if (request.cookie['login']) {
+    if (request.cookies['login']) {
       return true;
     }
 
