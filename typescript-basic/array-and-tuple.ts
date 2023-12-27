@@ -49,7 +49,7 @@ console.log(fetchUser());
 const [name24, height24] = fetchUser();
 console.log(name24, height24);
 
-function throwError(message: string): never {
+function throwError(message: string) {
   throw new Error(message);
 }
 throwError('error');

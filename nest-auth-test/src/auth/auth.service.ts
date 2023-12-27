@@ -8,6 +8,7 @@ export class AuthService {
   constructor(private userService: UserService) {}
 
   async register(userDto: CreateUserDto) {
+    console.log('AuthService:register()');
     const user = await this.userService.getUser(userDto.email);
     if (user) {
       // 이미 가입된 사용자 있음.
@@ -31,6 +32,7 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string) {
+    console.log('AuthService:validateUser()');
     const user = await this.userService.getUser(email);
 
     if (!user) {
