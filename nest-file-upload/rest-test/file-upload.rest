@@ -1,0 +1,42 @@
+@host = http://localhost:3000
+
+### upload file
+POST {{host}}/file-upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=test-file-upload
+
+--test-file-upload
+Content-Disposition: form-data; name="file"; filename="test.txt"
+
+여기에 텍스트 파일의 내용을 넣을 수 있습니다.
+--test-file-upload--
+
+### upload file 2
+POST {{host}}/file-upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=test-file-upload
+
+--test-file-upload
+Content-Disposition: form-data; name="file"; filename="test.txt"
+
+< test.txt
+--test-file-upload--
+
+### upload file 3 - 특정 경로 저장
+POST {{host}}/file-upload2 HTTP/1.1
+Content-Type: multipart/form-data; boundary=test-file-upload
+
+--test-file-upload
+Content-Disposition: form-data; name="file"; filename="test.txt"
+
+< test.txt
+--test-file-upload--
+
+### upload file 4 - 이미지 저장
+POST {{host}}/file-upload2 HTTP/1.1
+Content-Type: multipart/form-data; boundary=iamge-file-upload
+
+--image-file-upload
+Content-Disposition: form-data; name="file"; filename="testImage.jpg"
+Content-Type: image/jpeg
+
+< testImage.jpg
+--image-file-upload--
