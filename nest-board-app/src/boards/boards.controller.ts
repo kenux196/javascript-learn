@@ -6,10 +6,12 @@ import {
   Param,
   Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { Board, BoardStatus } from './board.model';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Controller('boards')
 export class BoardsController {
@@ -55,5 +57,13 @@ export class BoardsController {
     @Body('status') status: BoardStatus,
   ): Board {
     return this.boardsService.updateBoardStatus(id, status);
+  }
+
+  @Put('/:id')
+  updateBoard(
+    @Param('id') id: string,
+    @Body() updateBoardDto: UpdateBoardDto,
+  ): Board {
+    return this.boardsService.updateBoard(id, updateBoardDto);
   }
 }
