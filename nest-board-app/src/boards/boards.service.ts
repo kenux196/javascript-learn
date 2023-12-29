@@ -3,6 +3,7 @@ import { Board, BoardStatus } from './board.model';
 import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
+import { SearchBoardDto } from './dto/search-board.dto';
 
 @Injectable()
 export class BoardsService {
@@ -30,6 +31,20 @@ export class BoardsService {
 
   getBoardById(id: string): Board {
     return this.boards.find((board) => board.id === id);
+  }
+
+  searchBoards(filter: SearchBoardDto): Board[] {
+    if (filter.keyword) {
+      return this.boards.filter(
+        (board) =>
+          board.title.includes(filter.keyword) ||
+          board.content.includes(filter.keyword),
+      );
+    }
+    if (filter.status) {
+      return this.boards.filter((board) => board.status === filter.status);
+    }
+    return this.boards;
   }
 
   deleteById(id: string): void {
