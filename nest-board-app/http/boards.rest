@@ -13,13 +13,13 @@ Content-Type: application/json
 }
 
 ### get board by id
-GET {{host}}/boards/cbf01560-a55b-11ee-b5a3-eb67a0f88347 HTTP/1.1
+GET {{host}}/boards/1 HTTP/1.1
 
 ### delete board by id
-DELETE {{host}}/boards/3c707000-a55c-11ee-9c68-418997ce82a2 HTTP/1.1
+DELETE {{host}}/boards/2 HTTP/1.1
 
 ### update board status
-PATCH {{host}}/boards/ee33af10-a5f1-11ee-97a5-3735287962a4/status HTTP/1.1
+PATCH {{host}}/boards/1/status HTTP/1.1
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### update board
-PUT {{host}}/boards/2ad21030-a55f-11ee-9bc2-e10f6ad220da HTTP/1.1
+PUT {{host}}/boards/1 HTTP/1.1
 Content-Type: application/json
 
 {

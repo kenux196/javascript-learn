@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
-import { v1 as uuid } from 'uuid';
+// import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { SearchBoardDto } from './dto/search-board.dto';
@@ -8,6 +8,7 @@ import { SearchBoardDto } from './dto/search-board.dto';
 @Injectable()
 export class BoardsService {
   private boards: Board[] = [];
+  private id: number = 0;
 
   getAllBoards(): Board[] {
     return this.boards;
@@ -18,7 +19,7 @@ export class BoardsService {
     const { title, content } = createBoardDto;
     const date = new Date();
     const board: Board = {
-      id: uuid(),
+      id: this.getId(),
       title,
       content,
       status: BoardStatus.PUBLIC,
@@ -80,5 +81,9 @@ export class BoardsService {
     }
     board.updatedDate = new Date();
     return board;
+  }
+
+  private getId(): string {
+    return (++this.id).toString();
   }
 }
