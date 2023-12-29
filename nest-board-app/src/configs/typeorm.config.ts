@@ -2,11 +2,11 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const typeORMConfig: TypeOrmModuleOptions = {
   type: 'mariadb',
-  host: 'localhost',
+  host: 'kenux.duckdns.org',
   port: 3306,
-  username: 'test',
-  password: 'test',
-  database: 'boarddb',
+  username: 'kenux',
+  password: 'rotkfrn',
+  database: 'test',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: true,
 };

@@ -11,17 +11,17 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { BoardsService } from './boards.service';
+import { BoardsMemoryService } from './boards-memory.service';
 import { Board } from './board.model';
-import { BoardStatus } from './board-status.enum';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { SearchBoardDto } from './dto/search-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
+import { BoardStatus } from './board-status.enum';
 
 @Controller('boards')
 export class BoardsController {
-  constructor(private boardsService: BoardsService) {}
+  constructor(private boardsService: BoardsMemoryService) {}
 
   // @Get()
   // getAllBoards(): Board[] {
