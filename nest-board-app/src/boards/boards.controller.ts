@@ -41,7 +41,7 @@ export class BoardsController {
   }
 
   @Delete(':id')
-  deleteBoardById(@Param('id') id: number): Promise<boolean> {
+  deleteBoardById(@Param('id') id: number): Promise<string> {
     return this.boardsService.deleteById(id);
   }
 

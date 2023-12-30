@@ -43,12 +43,12 @@ export class BoardsService {
     return await this.boardRepository.searchByFilter(filter);
   }
 
-  async deleteById(id: number): Promise<boolean> {
-    const result = await this.boardRepository.delete(id);
-    if (result.affected > 0) {
-      return true;
-    }
-    return false;
+  async deleteById(id: number): Promise<string> {
+    const board = await this.getBoardById(id);
+    return await this.boardRepository
+      .remove(board)
+      .then(() => `Deleted board: ${id}`)
+      .catch((err) => err);
   }
 
   // updateBoardStatus(id: string, status: BoardStatus): Board {

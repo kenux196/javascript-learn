@@ -16,7 +16,7 @@ Content-Type: application/json
 GET {{host}}/boards/1 HTTP/1.1
 
 ### delete board by id
-DELETE {{host}}/boards/4 HTTP/1.1
+DELETE {{host}}/boards/11 HTTP/1.1
 
 ### update board status
 PATCH {{host}}/boards/1/status HTTP/1.1
