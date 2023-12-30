@@ -37,12 +37,11 @@ export class BoardsService {
     return await this.boardRepository.searchByFilter(filter);
   }
 
-  async deleteById(id: number): Promise<string> {
-    const board = await this.getBoardById(id);
-    return await this.boardRepository
-      .remove(board)
-      .then(() => `Deleted board: ${id}`)
-      .catch((err) => err);
+  async deleteById(id: number): Promise<void> {
+    const result = await this.boardRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Can't find Board with id ${id}`);
+    }
   }
 
   async updateBoard(
