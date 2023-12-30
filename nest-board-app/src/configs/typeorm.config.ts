@@ -4,7 +4,7 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   type: 'mariadb',
   host: 'kenux.duckdns.org',
   port: 3306,
-  username: 'toyman',
+  username: 'kenux',
   password: 'rotkfrn',
   database: 'toysDB',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
