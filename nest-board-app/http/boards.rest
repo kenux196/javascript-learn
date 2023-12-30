@@ -8,7 +8,7 @@ POST {{host}}/boards HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "새로운",
+  "title": "새로운 글",
   "content": "새로운 내용입니다."
 }
 
@@ -16,7 +16,7 @@ Content-Type: application/json
 GET {{host}}/boards/1 HTTP/1.1
 
 ### delete board by id
-DELETE {{host}}/boards/2 HTTP/1.1
+DELETE {{host}}/boards/4 HTTP/1.1
 
 ### update board status
 PATCH {{host}}/boards/1/status HTTP/1.1

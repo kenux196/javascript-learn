@@ -1,90 +1,73 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Board } from './board.model';
+// import { Board } from './board.model';
 // import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { SearchBoardDto } from './dto/search-board.dto';
 import { BoardStatus } from './board-status.enum';
+import { InjectRepository } from '@nestjs/typeorm';
+import { BoardRepository as BoardsRepository } from './boards.repository';
+import { Board } from './board.entity';
+import { DeleteResult, Like } from 'typeorm';
 
 @Injectable()
-export class BoardsMemoryService {
-  private boards: Board[] = [];
-  private id: number = 0;
+export class BoardsService {
+  constructor(
+    // @InjectRepository(Board)
+    private boardRepository: BoardsRepository,
+  ) {}
 
-  getAllBoards(): Board[] {
-    return this.boards;
-  }
-
-  // createBoard(title: string, content: string): Board {
-  createBoard(createBoardDto: CreateBoardDto): Board {
+  async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
     const { title, content } = createBoardDto;
     const date = new Date();
-    const board: Board = {
-      id: this.getId(),
+    const board = this.boardRepository.create({
       title,
       content,
       status: BoardStatus.PUBLIC,
       createdDate: date,
       updatedDate: date,
-    };
-    this.boards.push(board);
+    });
+    await this.boardRepository.save(board);
     return board;
   }
 
-  getBoardById(id: string): Board {
-    const result = this.boards.find((board) => board.id === id);
-    if (!result) {
+  async getBoardById(id: number): Promise<Board> {
+    const found = await this.boardRepository.findOneBy({ id: id });
+    if (!found) {
       throw new NotFoundException(`Can't find Board with id ${id}`);
     }
-    return result;
+    return found;
   }
 
-  searchBoards(filter: SearchBoardDto): Board[] {
-    if (!filter.keyword && !filter.status) {
-      return this.boards;
-    }
-
-    let result: Board[];
-    if (filter.keyword) {
-      result = this.boards.filter(
-        (board) =>
-          board.title.includes(filter.keyword) ||
-          board.content.includes(filter.keyword),
-      );
-    }
-    if (filter.status) {
-      result = this.boards.filter((board) => board.status === filter.status);
-    }
-    return result;
+  async searchBoards(filter: SearchBoardDto): Promise<Board[]> {
+    return await this.boardRepository.searchByFilter(filter);
   }
 
-  deleteById(id: string): void {
-    const found = this.getBoardById(id);
-    this.boards = this.boards.filter((board) => board.id !== found.id);
+  async deleteById(id: number): Promise<boolean> {
+    const result = await this.boardRepository.delete(id);
+    if (result.affected > 0) {
+      return true;
+    }
+    return false;
   }
 
-  updateBoardStatus(id: string, status: BoardStatus): Board {
-    const board = this.getBoardById(id);
-    board.status = status;
-    return board;
-  }
+  // updateBoardStatus(id: string, status: BoardStatus): Board {
 
-  updateBoard(id: string, updateBoardDto: UpdateBoardDto): Board {
-    const board = this.getBoardById(id);
-    if (updateBoardDto.title) {
-      board.title = updateBoardDto.title;
-    }
-    if (updateBoardDto.content) {
-      board.content = updateBoardDto.content;
-    }
-    if (updateBoardDto.status) {
-      board.status = updateBoardDto.status;
-    }
-    board.updatedDate = new Date();
-    return board;
-  }
+  //   // return board;
+  // }
 
-  private getId(): string {
-    return (++this.id).toString();
-  }
+  // updateBoard(id: string, updateBoardDto: UpdateBoardDto): Board {
+  //   const board = this.getBoardById(id);
+  //   if (updateBoardDto.title) {
+  //     board.title = updateBoardDto.title;
+  //   }
+  //   if (updateBoardDto.content) {
+  //     board.content = updateBoardDto.content;
+  //   }
+  //   if (updateBoardDto.status) {
+  //     board.status = updateBoardDto.status;
+  //   }
+  //   board.updatedDate = new Date();
+  //   return board;
+  // }
 }

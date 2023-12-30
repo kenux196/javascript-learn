@@ -11,42 +11,23 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { BoardsMemoryService } from './boards-memory.service';
-import { Board } from './board.model';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { SearchBoardDto } from './dto/search-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 import { BoardStatus } from './board-status.enum';
+import { BoardsService } from './boards.service';
+import { Board } from './board.entity';
 
 @Controller('boards')
 export class BoardsController {
-  constructor(private boardsService: BoardsMemoryService) {}
-
-  // @Get()
-  // getAllBoards(): Board[] {
-  //   return this.boardsService.getAllBoards();
-  // }
+  constructor(private boardsService: BoardsService) {}
 
   @Get()
-  searchBoard(@Query() filter: SearchBoardDto): Board[] {
+  searchBoard(@Query() filter: SearchBoardDto): Promise<Board[]> {
     console.log('search filter: ', filter);
     return this.boardsService.searchBoards(filter);
   }
-
-  // @Post()
-  // createBoard(@Body() body): Board {
-  //   console.log(body);
-  //   return this.boardsService.createBoard(body.title, body.content);
-  // }
-
-  // @Post()
-  // createBoard(
-  //   @Body('title') title: string,
-  //   @Body('content') content: string,
-  // ): Board {
-  //   return this.boardsService.createBoard(title, content);
-  // }
 
   @Post()
   @UsePipes(ValidationPipe)
@@ -55,28 +36,28 @@ export class BoardsController {
   }
 
   @Get(':id')
-  getBoardById(@Param('id') id: string): Board {
+  getBoardById(@Param('id') id: number): Promise<Board> {
     return this.boardsService.getBoardById(id);
   }
 
   @Delete(':id')
-  deleteBoardById(@Param('id') id: string): void {
+  deleteBoardById(@Param('id') id: number): Promise<boolean> {
     return this.boardsService.deleteById(id);
   }
 
-  @Patch(':id/status')
-  updateBoardStatus(
-    @Param('id') id: string,
-    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
-  ): Board {
-    return this.boardsService.updateBoardStatus(id, status);
-  }
+  // @Patch(':id/status')
+  // updateBoardStatus(
+  //   @Param('id') id: string,
+  //   @Body('status', BoardStatusValidationPipe) status: BoardStatus,
+  // ): Board {
+  //   return this.boardsService.updateBoardStatus(id, status);
+  // }
 
-  @Put(':id')
-  updateBoard(
-    @Param('id') id: string,
-    @Body() updateBoardDto: UpdateBoardDto,
-  ): Board {
-    return this.boardsService.updateBoard(id, updateBoardDto);
-  }
+  // @Put(':id')
+  // updateBoard(
+  //   @Param('id') id: string,
+  //   @Body() updateBoardDto: UpdateBoardDto,
+  // ): Board {
+  //   return this.boardsService.updateBoard(id, updateBoardDto);
+  // }
 }
