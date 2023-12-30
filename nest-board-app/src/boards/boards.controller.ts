@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   Put,
   Query,
@@ -15,7 +14,6 @@ import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { SearchBoardDto } from './dto/search-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
-import { BoardStatus } from './board-status.enum';
 import { BoardsService } from './boards.service';
 import { Board } from './board.entity';
 
@@ -48,7 +46,7 @@ export class BoardsController {
   @Put(':id')
   updateBoard(
     @Param('id') id: number,
-    @Body() updateBoardDto: UpdateBoardDto,
+    @Body('status', BoardStatusValidationPipe) updateBoardDto: UpdateBoardDto,
   ): Promise<Board> {
     return this.boardsService.updateBoard(id, updateBoardDto);
   }

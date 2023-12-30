@@ -20,4 +20,7 @@ export class Board extends BaseEntity {
 
   @Column()
   updatedDate: Date;
+
+  @Column()
+  writer: string;
 }
