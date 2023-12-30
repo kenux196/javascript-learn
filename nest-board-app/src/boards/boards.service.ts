@@ -51,23 +51,22 @@ export class BoardsService {
       .catch((err) => err);
   }
 
-  // updateBoardStatus(id: string, status: BoardStatus): Board {
-
-  //   // return board;
-  // }
-
-  // updateBoard(id: string, updateBoardDto: UpdateBoardDto): Board {
-  //   const board = this.getBoardById(id);
-  //   if (updateBoardDto.title) {
-  //     board.title = updateBoardDto.title;
-  //   }
-  //   if (updateBoardDto.content) {
-  //     board.content = updateBoardDto.content;
-  //   }
-  //   if (updateBoardDto.status) {
-  //     board.status = updateBoardDto.status;
-  //   }
-  //   board.updatedDate = new Date();
-  //   return board;
-  // }
+  async updateBoard(
+    id: number,
+    updateBoardDto: UpdateBoardDto,
+  ): Promise<Board> {
+    const board = await this.getBoardById(id);
+    if (updateBoardDto.title) {
+      board.title = updateBoardDto.title;
+    }
+    if (updateBoardDto.content) {
+      board.content = updateBoardDto.content;
+    }
+    if (updateBoardDto.status) {
+      board.status = updateBoardDto.status;
+    }
+    board.updatedDate = new Date();
+    await this.boardRepository.save(board);
+    return board;
+  }
 }

@@ -13,13 +13,13 @@ Content-Type: application/json
 }
 
 ### get board by id
-GET {{host}}/boards/1 HTTP/1.1
+GET {{host}}/boards/13 HTTP/1.1
 
 ### delete board by id
 DELETE {{host}}/boards/11 HTTP/1.1
 
-### update board status
-PATCH {{host}}/boards/1/status HTTP/1.1
+### update status
+PUT {{host}}/boards/13 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### update board
-PUT {{host}}/boards/1 HTTP/1.1
+PUT {{host}}/boards/13 HTTP/1.1
 Content-Type: application/json
 
 {

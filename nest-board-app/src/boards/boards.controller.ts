@@ -45,19 +45,11 @@ export class BoardsController {
     return this.boardsService.deleteById(id);
   }
 
-  // @Patch(':id/status')
-  // updateBoardStatus(
-  //   @Param('id') id: string,
-  //   @Body('status', BoardStatusValidationPipe) status: BoardStatus,
-  // ): Board {
-  //   return this.boardsService.updateBoardStatus(id, status);
-  // }
-
-  // @Put(':id')
-  // updateBoard(
-  //   @Param('id') id: string,
-  //   @Body() updateBoardDto: UpdateBoardDto,
-  // ): Board {
-  //   return this.boardsService.updateBoard(id, updateBoardDto);
-  // }
+  @Put(':id')
+  updateBoard(
+    @Param('id') id: number,
+    @Body() updateBoardDto: UpdateBoardDto,
+  ): Promise<Board> {
+    return this.boardsService.updateBoard(id, updateBoardDto);
+  }
 }
