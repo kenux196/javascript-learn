@@ -13,16 +13,16 @@ export class BoardsService {
   async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
     const { title, content, writer } = createBoardDto;
     const date = new Date();
-    const board = this.boardRepository.create({
+    const board = {
       title,
       content,
       status: BoardStatus.PUBLIC,
       writer: writer,
       createdDate: date,
       updatedDate: date,
-    });
-    await this.boardRepository.save(board);
-    return board;
+    };
+    const savedBoard = await this.boardRepository.save(board);
+    return savedBoard;
   }
 
   async getBoardById(id: number): Promise<Board> {
