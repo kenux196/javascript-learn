@@ -11,7 +11,8 @@ export class UsersService {
   }
 
   async getUserByUsername(username: string): Promise<User> {
-    const user = await this.usersRepository.findByUsername(username);
+    // const user = await this.usersRepository.findByUsername(username); // Data Mapper 방식
+    const user = await User.findByUsername(username); // Active Record 방식
     if (!user) {
       throw new NotFoundException(`Not found username: ${username}`);
     }
