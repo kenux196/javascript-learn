@@ -1,0 +1,10 @@
+@host = http://localhost:3000
+
+### Get all users
+GET {{host}}/users HTTP/1.1
+
+### get user by username
+GET {{host}}/users/kenux HTTP/1.1
+
+### get user by username but not exist user.
+GET {{host}}/users/wrong HTTP/1.1
