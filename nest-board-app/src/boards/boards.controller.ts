@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -16,8 +17,10 @@ import { SearchBoardDto } from './dto/search-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 import { BoardsService } from './boards.service';
 import { Board } from './board.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('boards')
+@UseGuards(AuthGuard())
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
 
