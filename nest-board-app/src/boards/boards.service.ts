@@ -5,24 +5,33 @@ import { SearchBoardDto } from './dto/search-board.dto';
 import { BoardStatus } from './board-status.enum';
 import { BoardRepository as BoardsRepository } from './boards.repository';
 import { Board } from './board.entity';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class BoardsService {
   constructor(private boardRepository: BoardsRepository) {}
 
-  async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
-    const { title, content, writer } = createBoardDto;
+  async createBoard(
+    createBoardDto: CreateBoardDto,
+    user: User,
+  ): Promise<Board> {
+    const { title, content } = createBoardDto;
     const date = new Date();
     const board = {
       title,
       content,
       status: BoardStatus.PUBLIC,
-      writer: writer,
       createdDate: date,
       updatedDate: date,
+      user: user,
     };
     const savedBoard = await this.boardRepository.save(board);
+    delete savedBoard.user;
     return savedBoard;
+  }
+
+  async getAllBoardByUser(user: User) {
+    return await this.boardRepository.getAllBoardByUser(user);
   }
 
   async getBoardById(id: number): Promise<Board> {

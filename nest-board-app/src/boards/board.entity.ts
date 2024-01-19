@@ -22,9 +22,6 @@ export class Board {
   @Column()
   updatedDate: Date;
 
-  @Column()
-  writer: string;
-
-  @ManyToOne((type) => User, (user) => user.boards, { eager: false })
+  @ManyToOne((type) => User, (user) => user.boards, { eager: true })
   user: User;
 }

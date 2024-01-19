@@ -2,6 +2,7 @@ import { Brackets, DataSource, Repository } from 'typeorm';
 import { Board } from './board.entity';
 import { Injectable } from '@nestjs/common';
 import { SearchBoardDto } from './dto/search-board.dto';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class BoardRepository extends Repository<Board> {
@@ -11,6 +12,7 @@ export class BoardRepository extends Repository<Board> {
 
   async searchByFilter(filter: SearchBoardDto): Promise<Board[]> {
     let query = this.createQueryBuilder('board')
+      .leftJoin('user', 'user', 'user.id = board.userId')
       .where('1 = 1')
       .orderBy('board.id', 'DESC');
 
@@ -23,12 +25,11 @@ export class BoardRepository extends Repository<Board> {
         }),
       );
     }
-    if (filter.writer) {
+
+    if (filter.user) {
       query = query.andWhere(
         new Brackets((qb) => {
-          qb.where('board.writer like :writer', {
-            writer: `%${filter.writer}%`,
-          });
+          qb.where('board.userId = :userId', { userId: filter.user.id });
         }),
       );
     }
@@ -41,6 +42,13 @@ export class BoardRepository extends Repository<Board> {
       );
     }
 
+    return await query.execute();
+  }
+
+  async getAllBoardByUser(user: User) {
+    const query = this.createQueryBuilder('board')
+      .where('board.userId = :userId', { userId: user.id })
+      .orderBy('board.id', 'DESC');
     return await query.execute();
   }
 }

@@ -5,8 +5,8 @@ POST {{host}}/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "username": "kenux",
-  "password": "123123"
+  "username": "yujin",
+  "password": "1111"
 }
 
 ### sign up - validation failed
@@ -49,3 +49,8 @@ Content-Type: application/json
 POST {{host}}/authTest HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzA1NTU2Mzc5LCJleHAiOjE3MDU1NTk5Nzl9.vIDO1KYkkjkJjZmbZMLJDHJ0TZAALjOu-MYImGSqy1E
+
+### authTest
+POST {{host}}/test HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzA1NTYyMjIwLCJleHAiOjE3MDU1NjU4MjB9.HkjYYmGM91-wAIF3gALx8oaWIrEhKNdAb66X1ELeOOU
