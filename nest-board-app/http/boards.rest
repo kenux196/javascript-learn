@@ -37,10 +37,11 @@ Content-Type: application/json
 }
 
 ### search by keyword
-GET {{host}}/boards?keyword=수정 HTTP/1.1
+GET {{host}}/boards?keyword=유진 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inl1amluIiwiaWF0IjoxNzA1NjM5NzMxLCJleHAiOjE3MDU2NDMzMzF9.KqyIlnC4vd1WsH2Chm499xzuSHkr-uSjD_AONGQpNmY
 
 ### search by writer
-GET {{host}}/boards?writer=유진 HTTP/1.1
+#GET {{host}}/boards?writer=유진 HTTP/1.1
 
 ### search by status
 GET {{host}}/boards?status=PRIVATE HTTP/1.1

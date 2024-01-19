@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Post,
   Put,
@@ -24,6 +25,7 @@ import { User } from 'src/users/user.entity';
 @Controller('boards')
 @UseGuards(AuthGuard())
 export class BoardsController {
+  private logger = new Logger('BoardsController');
   constructor(private boardsService: BoardsService) {}
 
   @Get()
@@ -32,7 +34,7 @@ export class BoardsController {
     @GetUser() user: User,
   ): Promise<Board[]> {
     filter.user = user;
-    console.log('search filter: ', filter);
+    this.logger.log('search filter: ', filter);
     return this.boardsService.searchBoards(filter);
   }
 
